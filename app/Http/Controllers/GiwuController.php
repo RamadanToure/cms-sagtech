@@ -69,7 +69,15 @@ class GiwuController extends Controller
                 $filenameAide = $RecnamefileAide;
             }
         }
-
+        // Mettre à jour l'anne de retraite apres modification
+        if($request->get('anneretraite') != $infoSoc->anneretraite){
+            $AllUser = User::all();
+            foreach($AllUser as $user){
+                $date = Carbon::parse($user->date_embauche);
+                $user->date_retraite = $date->addYears($request->get('anneretraite'))->format('Y-m-d');
+                $user->save();
+            }
+        }
         $dataInitiale = GiwuSociete::where('id_societe', 1)->first()->toArray();
         GiwuSociete::where('id_societe',1)->update([ 
             'nom_soc' => $request->get('nom_soc'),

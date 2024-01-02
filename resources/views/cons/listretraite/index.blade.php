@@ -12,7 +12,7 @@
 
 <div class="row">
 	<div class="col-12">
-		<div class="card">
+		<div class="">
 			<div class="card-body">
 				<ul class="nav nav-pills nav-customs nav-danger mb-3" role="tablist">
 					<li class="nav-item">
@@ -99,7 +99,8 @@
 														]);
 										var options = {
 											title: "Statistique des magistras qui doivent aller à la retraite",
-											height: 470,
+											width: 1500,
+											height: 500,
 											bar: {groupWidth: "50%"},
 											legend: { position: "top" },
 										};
@@ -108,7 +109,7 @@
 									}
 								</script>
 								@if($datas)
-									<div id="columnchart_values" class="chart" ></div>
+									<div id="columnchart_values" class="chart img-fluid" ></div>
 								@else
 									<div Class="alert alert-info"><strong>Info! </strong> {!!trans('data.AucunInfosTrouve')!!} pour afficher le graphe </div>
 								@endif

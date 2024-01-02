@@ -16,6 +16,7 @@ return [
     'grade'=>'Grade',
     'matricule'=>'Matricule',
     'date_nais'=>'Date Naissance',
+    'date_retraite'=>'Date retraite',
     'date_embauche'=>'Date d\'embauche',
     'telephone'=>'Téléphone',
     'echellon'=>'Echellon',

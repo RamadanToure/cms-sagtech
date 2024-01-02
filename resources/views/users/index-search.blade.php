@@ -7,6 +7,8 @@
                 <th scope="col">{{trans('data.name')." ".trans('data.prenom')}}</th>
                 <th scope="col">{{trans('data.email')}}</th>
                 <th scope="col">{{trans('data.tel_user')}}</th>
+                <th scope="col">{{trans('data.date_embauche')}}</th>
+                <th scope="col">{{trans('data.date_retraite')}}</th>
                 <th scope="col">{{trans('data.lib_role')}}</th>
                 <th scope="col">{{trans('data.id_fonct')}}</th>
                 <th scope="col" class="text-center">{{trans('data.is_active')}}</th>
@@ -22,6 +24,8 @@
                     <td>{{$listgiwu->name." ".$listgiwu->prenom}}</td>
                     <td>{{$listgiwu->email}}</td>
                     <td>{{$listgiwu->tel_user}}</td>
+                    <td>{{date('d/m/Y', strtotime($listgiwu->date_embauche))}}</td>
+                    <td>{{date('d/m/Y', strtotime($listgiwu->date_retraite))}}</td>
                     <td>{{isset($listgiwu->role) ? $listgiwu->role->libelle_role : trans('data.not_found')}}</td>
                     <td>{{trans('entite.type_destinataire')[$listgiwu->type_fonct].' : '.$listgiwu->fonction($listgiwu->type_fonct,$listgiwu->id_fonct)}}</td>
                     <td class="text-center">

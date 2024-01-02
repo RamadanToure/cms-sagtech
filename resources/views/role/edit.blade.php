@@ -51,19 +51,36 @@
                                     </thead>
                                     <tbody>
                                         @foreach($listMenu as $list)
-                                            <?php  if(\App\Models\GiwuRoleAcces::getCheckRoleAcces($OneAcces->id_role,$list->id_menu) == 0){
-                                                    $checkMenu = "";
-                                                }else{
-                                                    $checkMenu = "checked";
-                                                } ?>
-                                            <tr role="row">
-                                                <td>                                                 
-                                                    <div class="form-check form-switch">
-                                                        <input class="form-check-input" {{$checkMenu}} type="checkbox" role="switch" id="flexSwitchCheckChecked{{$list->id_menu}}" name ="cocher{{$list->id_menu}}" value="{{$list->id_menu}}">
-                                                        <label class="form-check-label" for="flexSwitchCheckChecked{{$list->id_menu}}">Menu : {{$list->libelle_menu}} / {{$list->titre_page}}</label>
-                                                    </div>
-                                                </td>
-                                            </tr>  
+                                            @if($list->topmenu_id == 0)
+                                                <?php  if(\App\Models\GiwuRoleAcces::getCheckRoleAcces($OneAcces->id_role,$list->id_menu) == 0){
+                                                        $checkMenu = "";
+                                                    }else{
+                                                        $checkMenu = "checked";
+                                                    } ?>
+                                                <tr role="row">
+                                                    <td>                                                 
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input" {{$checkMenu}} type="checkbox" role="switch" id="flexSwitchCheckChecked{{$list->id_menu}}" name ="cocher{{$list->id_menu}}" value="{{$list->id_menu}}">
+                                                            <label class="form-check-label" for="flexSwitchCheckChecked{{$list->id_menu}}">Menu : {{$list->libelle_menu}} / {{$list->titre_page}}</label>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            @else
+                                                <?php  if(\App\Models\GiwuRoleAcces::getCheckRoleAcces($OneAcces->id_role,$list->id_menu) == 0){
+                                                        $checkMenu = "";
+                                                    }else{
+                                                        $checkMenu = "checked";
+                                                    } ?>
+                                                <tr role="row">
+                                                    <td style="padding-left:70px;">                                                 
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input" {{$checkMenu}} type="checkbox" role="switch" id="flexSwitchCheckChecked{{$list->id_menu}}" name ="cocher{{$list->id_menu}}" value="{{$list->id_menu}}">
+                                                            <label class="form-check-label" for="flexSwitchCheckChecked{{$list->id_menu}}">Sous Menu : {{$list->libelle_menu}} / {{$list->titre_page}}</label>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                            @endif
                                             <?php $cheActio = \App\Models\GiwuRoleAcces::getlistAction($list->id_menu);?>
                                             @if(sizeof($cheActio) != 0)
                                                 @foreach($cheActio as $listAct)
@@ -73,7 +90,7 @@
                                                         $checkAction = "checked";
                                                     } ?>
                                                     <tr role="row" style="color:#61a7a3;">
-                                                        <td style="padding-left:70px;">
+                                                        <td style="padding-left:140px;">
                                                             <div class="form-check form-switch">
                                                                 <input class="form-check-input" {{$checkAction}} type="checkbox" role="switch" name ="action{{$listAct->id_action}}"  value="{{$listAct->id_action}}" id="flexSwitchCheck{{$listAct->id_action}}" >
                                                                 <label class="form-check-label" for="flexSwitchCheck{{$listAct->id_action}}">Actions : {{$listAct->libelle_action}}</label>
