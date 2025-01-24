@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'AlertEgo'),
+    'name' => env('APP_NAME', 'AlterEgo'),
     'descrApp' => 'Espace d\'administration',
 
     /*
