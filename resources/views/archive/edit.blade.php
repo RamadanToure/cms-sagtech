@@ -24,12 +24,12 @@
 							<div class="row">
 							@if(session()->has('success') || session()->has('error'))<div class="col-md-12 mt-2"><div class="alert {!! session()->has('success') ? 'alert-success' : '' !!} {!! session()->has('error') ? 'alert-danger' : '' !!} alert-border-left alert-dismissible fade show" role="alert"><i title ="{!!session()->has('errorMsg')? session()->get('errorMsg') : '' !!}" class=" {!!session()->has('success') ? 'ri-notification-off-line' : 'ri-error-warning-line'!!} me-3 align-middle"></i> <strong>Infos </strong> - {!! session()->has('success') ? session()->get('success') : session()->get('error') !!}<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div></div>@endif
 
-							<div class="col-md-6">
+							<!-- <div class="col-md-6">
 								<div class="mb-3">
 									<label for="ref_doc" class="form-label">{!!trans('data.ref_doc')!!} <strong style='color: red;'> *</strong></label>
 									{!! Form::text('ref_doc',$item->ref_doc,["id"=>"ref_doc","class"=>"form-control" ,"required"=>"required" ,'autocomplete'=>'off' ,'placeholder'=>"Entrer Reference" ]) !!}
 								</div>
-							</div>
+							</div> -->
 							<div class="col-md-6">
 								<div class="mb-3">
 									<label for="sujet_doc" class="form-label">{!!trans('data.sujet_doc')!!} <strong style='color: red;'> *</strong></label>

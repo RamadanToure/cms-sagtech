@@ -1,11 +1,8 @@
 <?php
 
+use App\Http\Controllers\ArchiveController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MailController;
-use App\Http\Controllers\HomeController;
-use App\Mail\TestMail;
-use App\Models\User;
-use Illuminate\Support\Facades\Mail;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -46,7 +43,7 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::group(['middleware' =>'App\Http\Middleware\GiwuMiddleware'],function(){
 	
 		Route::get('manuel', [App\Http\Controllers\GiwuController::class, 'AfficherAideGiwu']);
-	
+		
 		Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 		Route::get('myprofile',[App\Http\Controllers\GiwuController::class, 'AfficherProfile']);
 		Route::get('mysociety',[App\Http\Controllers\GiwuController::class, 'AfficherMySociete']);
@@ -142,9 +139,11 @@ Route::group(['middleware' => 'auth'],function(){
 		|   ARCHIVE
 		|--------------------------------------------------------------------------
 		*/
-		Route::get('archive/AffichePopDelete/{id}',[App\Http\Controllers\ArchiveController::class, 'AffichePopDelete']);
-		Route::get('archive/exporterExcel',[App\Http\Controllers\ArchiveController::class, 'exporterExcel']);
-		Route::get('archive/exporterPdf',[App\Http\Controllers\ArchiveController::class, 'exporterPdf']);
+		Route::get('archive/AffichePopDelete/{id}',[ArchiveController::class, 'AffichePopDelete']);
+		Route::get('archive/exporterExcel',[ArchiveController::class, 'exporterExcel']);
+		Route::get('archive/exporterPdf',[ArchiveController::class, 'exporterPdf']);
+		Route::get('generateDocs/reference/{id}', [ArchiveController::class, 'GenererDocs'])->name('archive.generateDocs');
+
 		/*
 		|--------------------------------------------------------------------------
 		|   CARRIERE

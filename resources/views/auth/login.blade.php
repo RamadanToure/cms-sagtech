@@ -32,7 +32,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-8 col-lg-6 col-xl-5">
                     <!-- FIN -->
-                    <div class="step-arrow-nav mt-n3 mx-n3 mb-3">
+                    <!-- <div class="step-arrow-nav mt-n3 mx-n3 mb-3">
 
                         <ul class="nav nav-pills nav-justified custom-nav" role="tablist">
                             <li class="nav-item" role="presentation">
@@ -46,7 +46,7 @@
                                 </button>
                             </li>
                         </ul>
-                    </div>
+                    </div> -->
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="pills-bill-info" role="tabpanel" aria-labelledby="pills-bill-info-tab">
                             <!-- Fin -->
@@ -125,11 +125,11 @@
                     </div>
                     <!-- FIN -->
                     <!-- end card -->
-                    <div class="mt-4 text-center">
+                    <!-- <div class="mt-4 text-center">
                         <p class="mb-0 text-white">Vous n'avez pas de compte ?  
                             <a href="{{ route('register') }}" class="text-white fw-semibold text-primary text-decoration-underline"> S'inscrire </a>
                         </p>
-                    </div>
+                    </div> -->
 
                 </div>
             </div>

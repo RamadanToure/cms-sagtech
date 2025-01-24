@@ -34,7 +34,7 @@ class Archive extends Model {
 			}
 			$query->where('direc_id',$req->get('direc_id'));
 		}else{
-			$query->where('direc_id',session('direc_idSess'));
+			// $query->where('direc_id',session('direc_idSess'));
 		}
 		$recherche = $req->get('query');
 		if(isset($recherche)){

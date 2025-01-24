@@ -20,6 +20,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\ArchiveExportExcel;
 use PDF;
 use Ramsey\Uuid\Uuid;
+use setasign\Fpdi\Fpdi;
 
 
 class ArchiveController extends Controller {
@@ -81,7 +82,7 @@ class ArchiveController extends Controller {
 				$datas['fichier_doc']=$filename;
 			}
 			$newAdd = new Archive();
-			$newAdd->ref_doc = $datas['ref_doc'];
+			$newAdd->ref_doc = date('ist').date('YmdHist');
 			$newAdd->code_doc = Uuid::uuid4();
 			$newAdd->sujet_doc = $datas['sujet_doc'];
 			$newAdd->type_doc = $datas['type_doc'];
@@ -157,7 +158,7 @@ class ArchiveController extends Controller {
 				$file1->move($pathName, $filename);
 				$datas['fichier_doc']=$filename;
 			}
-			$newUpd->ref_doc = $datas['ref_doc'];
+			// $newUpd->ref_doc = $datas['ref_doc'];
 			$newUpd->sujet_doc = $datas['sujet_doc'];
 			$newUpd->type_doc = $datas['type_doc'];
 			$newUpd->direc_id = $datas['direc_id'];
@@ -226,8 +227,48 @@ class ArchiveController extends Controller {
 		return $pdf->stream('archive-'.date('Ymdhis').'.pdf');
 	}
 
+	public function GenererDocs($id)
+	{
+		$arch = Archive::where('id_archive', $id)->first();
+		$fichier = $arch?->fichier_doc;
+		$ref = $arch?->ref_doc;
+		$filePath = public_path('assets/courrier/' . $fichier);
 	
-
+		// Vérifier si le fichier PDF existe
+		if (!file_exists($filePath)) {
+			return response()->json(['error' => 'Le fichier PDF n\'existe pas.'], 404);
+		}
+	
+		$pdf = new Fpdi();
+		$pageCount = $pdf->setSourceFile($filePath);
+	
+		// Vérifier si le PDF contient des pages
+		if ($pageCount < 1) {
+			return response()->json(['error' => 'Le fichier PDF est vide ou invalide.'], 400);
+		}
+	
+		// Boucle pour traiter chaque page existante
+		for ($i = 1; $i <= $pageCount; $i++) {
+			$pdf->AddPage();
+			$templateId = $pdf->importPage($i);
+			$pdf->useTemplate($templateId);
+	
+			// Ajouter la date directement sur la page importée
+			$pdf->SetFont('Arial', 'B', 10); 
+			$pdf->SetTextColor(0, 0, 0);
+			$pdf->SetXY(10, 0);
+			$pdf->Cell(0, 10, "REF : $ref", 0, 0, 'C'); 
+		}
+	
+		// Retourner le fichier PDF modifié
+		return response()->streamDownload(
+			function () use ($pdf,$ref) {
+				$pdf->Output('I', $ref.'.pdf');
+			},
+			$ref.'.pdf',
+			['Content-Type' => 'application/pdf']
+		);
+	}
 
 }
 

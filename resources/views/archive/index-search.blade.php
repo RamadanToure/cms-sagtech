@@ -30,11 +30,15 @@
 					<td>{!! $listgiwu->ref_doc !!}</td>
 					<td class="text-center">
 						@if($listgiwu->fichier_doc)
-							<a href='{{"assets/courrier/".$listgiwu->fichier_doc}}' title="{!!$listgiwu->fichier_doc!!}" target="_blank" class="badge bg-success">Ouvrir</a>
+							<a href="{{route('archive.generateDocs',$listgiwu->id_archive)}}" title="{!!$listgiwu->fichier_doc!!}" target="_blank" class="badge bg-success">Ouvrir</a>
 						@else <span class="badge bg-danger">Aucun</a>  @endif
 					</td>
 					<!-- <td>{!! $listgiwu->code_doc !!}</td> -->
-					<td>{!! $listgiwu->sujet_doc !!}</td>
+					<td @if(strlen($listgiwu->sujet_doc) > 20) title="{{ $listgiwu->sujet_doc }}" @endif>
+						@if(strlen($listgiwu->sujet_doc) > 20)
+						{!! substr($listgiwu->sujet_doc, 0, 20) !!}...
+						@else  {!! $listgiwu->sujet_doc !!} 
+						@endif </td>
 					<td>{!! trans('entite.type_doc_Archive')[$listgiwu->type_doc] !!}</td>
 					<td title="{{isset($listgiwu->direction) ? $listgiwu->direction->lib_direc : trans('data.not_found')}}">{!! isset($listgiwu->direction) ? $listgiwu->direction->code_direc : trans('data.not_found') !!}</td>
 					<td>{!! trans('entite.statut_doc_Archive')[$listgiwu->statut_doc] !!}</td>

@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Archive;
 use Illuminate\Http\Request;
 use App\Providers\GiwuService;
 use Auth;
 use App\Models\GiwuSociete;
 use App\Models\Courrier;
-
+use App\Models\User;
 
 class HomeController extends Controller
 {
@@ -40,6 +41,12 @@ class HomeController extends Controller
         $giwu['courrierNonTraiteData'] = Courrier::CourrierNonTraite();
         $giwu['courrierNonTranmis'] = Courrier::CourrierNoSend()->count();
         $giwu['CourrierTotalRecu'] = Courrier::CourrierTotalRecu()->count();
+        $giwu['archive'] = "giwu";
+
+        $giwu['docTotalArchive'] = Archive::all()->count();
+        $giwu['nombreUser'] = User::all()->count();
+        $giwu['docsPrive'] = Archive::where('statut_doc','pri')->get()->count();
+        $giwu['docsAll'] = Archive::all();
         return view('home')->with($giwu);
     }
 
