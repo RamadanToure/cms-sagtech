@@ -6,9 +6,11 @@
     <meta charset="utf-8" />
     <title>{{ config('app.name') }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Application de gestion des courriers et archives" name="description" />
     <meta content="Themesbrand" name="author" />
     <!-- App favicon -->
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="{{ asset('assets/images/logo.png') }}">
     <!-- Layout config Js -->
     <link href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
     <script src="{{ asset('assets/js/layout.js') }}"></script>
@@ -27,7 +29,7 @@
 </head>
 
 <body >
-    
+
     <?php $log = \App\Models\GiwuSociete::logoSoc(); ?>
     <!-- Begin page -->
     <div id="layout-wrapper">
@@ -47,7 +49,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                <h4 class="mb-sm-0">{{ config('app.name') }}</h4>
+                                <h4 class="mb-sm-0">Agende Nationale d'Amenagement des Infrastructures Minieres (ANAIM)</h4>
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
                                         <li class="breadcrumb-item"><a href="{{url('/')}}">Accueil</a></li>
@@ -73,7 +75,7 @@
         <!-- end main content-->
     </div>
     <!-- END layout-wrapper -->
-    
+
     <!--preloader-->
     <div id="preloader">
         <div id="status">
@@ -101,19 +103,19 @@
     <script src="{{ asset('assets/js/pages/form-validation.init.js') }}"></script>
     <!-- App js -->
             <!-- gridjs js -->
-    <!-- <script src="{{ asset('assets/libs/gridjs/gridjs.umd.js') }}"></script> 
+    <!-- <script src="{{ asset('assets/libs/gridjs/gridjs.umd.js') }}"></script>
      <script src="{{ asset('assets/js/pages/gridjs.init.js') }}"></script> -->
      <script src="{{asset('assets/js/pages/modal.init.js')}}"></script>
      <script src="{{asset('assets/js/pages/notifications.init.js')}}"></script>
-     
+
      <script src="{{asset('assets/libs/sweetalert2/sweetalert2.min.js')}}"></script>
      <script src="{{asset('assets/js/pages/sweetalerts.init.js')}}"></script>
 
     <script src="{{ asset('assets/js/app.js') }}"></script>
     <script src="{{ asset('assets/js/select2.min.js') }}"></script>
-    
+
     <script type="text/javascript">
-        
+
         $(document).ready(function() {
             $('.allselect').select2();
         });
@@ -128,7 +130,7 @@
             fetch(`/typedestina/${selectedValue}`)
                 .then(response => response.json())
                 .then(data => {
-                    
+
                     // Ajoutez les nouvelles options au combo 2
                     if(selectedValue == 'dr'){
                         data.forEach(option => {

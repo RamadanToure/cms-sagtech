@@ -271,7 +271,7 @@
                         <i class='bx bx-moon fs-22'></i>
                     </button>
                 </div> -->
-                <?php 
+                <?php
                     $Cour = \App\Models\Courrier::CourrierNoSend();
                 ?>
                 @if($Cour->count() != 0)
@@ -350,13 +350,13 @@
                                 class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span
                                 class="align-middle">Profile</span></a>
                         <div class="dropdown-divider"></div>
-                        
+
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            <i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> 
+                            <i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i>
                             <span class="align-middle" data-key="t-logout">Déconnecter</span></a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
-                            </form>                                    
+                            </form>
                     </div>
                 </div>
             </div>

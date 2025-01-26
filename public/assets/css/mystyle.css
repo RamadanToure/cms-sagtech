@@ -16,6 +16,15 @@
       border-color: #be1b54; }
     .btn-pink.disabled, .btn-pink:disabled {
       color: #fff;
-      background-color: #f68daf;
+      background-color: #412ed7;
       border-color: #f68daf; }
 
+      .archivage-card .avatar-title {
+        background-color: #0a5a27 !important;
+        color: #107127 !important;
+    }
+
+    .courrier-card .avatar-title {
+        background-color: #160960 !important;
+        color: #412ed7 !important;
+    }
